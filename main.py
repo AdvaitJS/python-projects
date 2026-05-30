@@ -56,6 +56,22 @@ def view_all(passwords):
     for app in passwords:
         print(app)
 
+def update_pass(passwords):
+    if not passwords:
+        print("Nothing stored yet!")
+        return
+    app = input("Enter name of app or site: ")
+    
+    if app not in passwords:
+        print("Entry does not exist")
+        return 
+    password = input("Enter password: ")
+    passwords[app] = password
+    save_password(passwords)
+    print("password updated successfully")
+    
+
+
 
 def main():
     passwords = load_passwords()
@@ -65,7 +81,8 @@ def main():
         print("2. Search Password")
         print("3. Delete Password")
         print("4. View All Sites")
-        print("5. Exit")
+        print("5. Update Password")
+        print("6. Exit")
 
         choice = input("Enter choice: ")
 
@@ -82,6 +99,9 @@ def main():
             view_all(passwords)
 
         elif choice == "5":
+            update_pass(passwords)
+
+        elif choice == "6":
             print("Goodbye!")
             break
 
